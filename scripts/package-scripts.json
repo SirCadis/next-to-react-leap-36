@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "electron": "node scripts/electron-dev.js",
+    "electron:build": "node scripts/build-electron.js",
+    "electron:pack": "npm run electron:build && npx electron-builder",
+    "electron:pack:win": "npm run electron:build && npx electron-builder --win",
+    "electron:pack:mac": "npm run electron:build && npx electron-builder --mac",
+    "electron:pack:linux": "npm run electron:build && npx electron-builder --linux"
+  }
+}
