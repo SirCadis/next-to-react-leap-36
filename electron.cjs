@@ -6,6 +6,14 @@ const path = require('path');
 
 console.log('🚀 Starting Electron application...\n');
 
+// Rebuild native modules for Electron
+console.log('🔧 Rebuilding native modules for Electron...');
+try {
+  execSync('npx electron-rebuild', { stdio: 'inherit' });
+} catch (error) {
+  console.log('⚠️ Rebuild failed, continuing anyway...');
+}
+
 // Check if dist-electron exists and remove it to force rebuild
 if (fs.existsSync('dist-electron')) {
   console.log('🗑️ Cleaning previous build...');

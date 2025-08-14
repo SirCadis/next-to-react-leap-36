@@ -49,6 +49,7 @@
     "date-fns": "^3.6.0",
     "electron": "^37.2.6",
     "electron-builder": "^26.0.12",
+    "electron-rebuild": "^3.2.9",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.462.0",
