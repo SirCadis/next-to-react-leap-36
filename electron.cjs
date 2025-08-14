@@ -17,8 +17,8 @@ if (!fs.existsSync('dist-electron')) {
   }
 }
 
-// Check if main.js exists
-if (!fs.existsSync('dist-electron/main.js')) {
+// Check if main.cjs exists
+if (!fs.existsSync('dist-electron/main.cjs')) {
   console.error('❌ Main Electron file not found. Please run build first.');
   process.exit(1);
 }
@@ -27,7 +27,7 @@ if (!fs.existsSync('dist-electron/main.js')) {
 console.log('⚡ Launching Electron...\n');
 const isWindows = process.platform === 'win32';
 const electronCmd = isWindows ? 'npx.cmd' : 'npx';
-const electronProcess = spawn(electronCmd, ['electron', 'dist-electron/main.js'], {
+const electronProcess = spawn(electronCmd, ['electron', 'dist-electron/main.cjs'], {
   stdio: 'inherit',
   env: { ...process.env },
   shell: isWindows
