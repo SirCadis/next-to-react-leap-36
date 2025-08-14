@@ -9,7 +9,6 @@ export default defineConfig({
         preload: resolve(__dirname, 'src/electron/preload.ts'),
       },
       formats: ['cjs'],
-      fileName: (format, entryName) => `${entryName}.cjs`,
     },
     rollupOptions: {
       external: [
@@ -24,6 +23,7 @@ export default defineConfig({
       ],
       output: {
         entryFileNames: '[name].cjs',
+        format: 'cjs',
       },
     },
     target: 'node14',
