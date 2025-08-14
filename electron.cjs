@@ -25,9 +25,12 @@ if (!fs.existsSync('dist-electron/main.js')) {
 
 // Start Electron
 console.log('⚡ Launching Electron...\n');
-const electronProcess = spawn('npx', ['electron', 'dist-electron/main.js'], {
+const isWindows = process.platform === 'win32';
+const electronCmd = isWindows ? 'npx.cmd' : 'npx';
+const electronProcess = spawn(electronCmd, ['electron', 'dist-electron/main.js'], {
   stdio: 'inherit',
-  env: { ...process.env }
+  env: { ...process.env },
+  shell: isWindows
 });
 
 electronProcess.on('close', (code) => {
