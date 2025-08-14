@@ -12,9 +12,19 @@ export default defineConfig({
       fileName: (format, entryName) => `${entryName}.js`,
     },
     rollupOptions: {
-      external: ['electron'],
+      external: ['electron', 'better-sqlite3'],
+      output: {
+        entryFileNames: '[name].js',
+      },
     },
     outDir: 'dist-electron',
     emptyOutDir: true,
+    minify: false, // Keep readable for debugging
+    sourcemap: true,
+  },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+    },
   },
 });

@@ -40,12 +40,19 @@ function createWindow() {
   });
 
   if (VITE_DEV_SERVER_URL) {
+    console.log('Loading from dev server:', VITE_DEV_SERVER_URL);
     win.loadURL(VITE_DEV_SERVER_URL);
     win.webContents.openDevTools();
   } else {
-    // win.loadFile('dist/index.html')
-    win.loadFile(path.join(process.env.DIST, 'index.html'));
+    const indexPath = path.join(process.env.DIST, 'index.html');
+    console.log('Loading from file:', indexPath);
+    win.loadFile(indexPath);
   }
+
+  // Handle load errors
+  win.webContents.on('did-fail-load', (event, errorCode, errorDescription) => {
+    console.error('Failed to load:', errorCode, errorDescription);
+  });
 }
 
 // Quit when all windows are closed, except on macOS. There, it's common
