@@ -6,15 +6,18 @@ const path = require('path');
 
 console.log('🚀 Starting Electron application...\n');
 
-// Check if dist-electron exists
-if (!fs.existsSync('dist-electron')) {
-  console.log('📦 Building Electron files...');
-  try {
-    execSync('npx vite build --config electron.vite.config.ts', { stdio: 'inherit' });
-  } catch (error) {
-    console.error('❌ Failed to build Electron files');
-    process.exit(1);
-  }
+// Check if dist-electron exists and remove it to force rebuild
+if (fs.existsSync('dist-electron')) {
+  console.log('🗑️ Cleaning previous build...');
+  fs.rmSync('dist-electron', { recursive: true, force: true });
+}
+
+console.log('📦 Building Electron files...');
+try {
+  execSync('npx vite build --config electron.vite.config.ts', { stdio: 'inherit' });
+} catch (error) {
+  console.error('❌ Failed to build Electron files');
+  process.exit(1);
 }
 
 // Check if main.cjs exists
